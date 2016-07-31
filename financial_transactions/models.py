@@ -26,6 +26,7 @@ class Transaction(models.Model):
     account = models.ForeignKey('Account')
 
     class Meta:
+        app_label = 'financial_transactions'
         unique_together = (('id', 'account'),)
 
     def __unicode__(self):

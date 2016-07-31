@@ -22,7 +22,6 @@ setup(
     author_email='absoludity@gmail.com',
     install_requires=[
         'django-categories >= 1.1.4',
-        'south >= 0.7.6',
         'ofxparse >= 0.14',
     ],
     classifiers=[
