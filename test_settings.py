@@ -8,7 +8,7 @@ ROOT_URLCONF = 'financial_transactions.urls'
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
-STATIC_URL = '/'
+STATIC_URL = '/static/'
 
 DATABASES = {
     'default': {
@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.sites',
     'django.contrib.sessions',
+    'django.contrib.staticfiles',
     'categories',
     'django.contrib.contenttypes',
     'financial_transactions',
@@ -44,6 +45,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
 APPEND_SLASH = True
