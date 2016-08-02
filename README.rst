@@ -5,7 +5,7 @@ Financial Transactions
 .. image:: https://travis-ci.org/mgalushka/django-financial-transactions.svg?branch=master
     :target: https://travis-ci.org/mgalushka/django-financial-transactions
 
-Financial Transactions is a Django app to import and categorise transactions from financial institutions, where categories are assigned based on hints.
+Financial Transactions is a Django app to import and categorise transactions from financial institutions, where categories are assigned based on programmatic rules in python - this is open to discussion and we can experiment a lot with this!
 
 It's intended for hackers who want to build other interesting stuff with their categorised financial transactions.
 
@@ -20,7 +20,7 @@ Quick Start
         'financial_transactions',
     )
 
-2. Run `python manage.py syncdb` to create the Financial Transaction models.
+2. Run `python manage.py migrate` to create the Financial Transaction models.
 
 3. Start the development server and visit http://127.0.0.1:8000/admin/
 to create an account (you'll need the Admin app enabled), choosing a transaction format for the account (currently only CommerzBank Giro and Commerzbank Mastercard csvs are supported, but I'll add forms as people need them.)
@@ -29,4 +29,4 @@ to create an account (you'll need the Admin app enabled), choosing a transaction
 
     ./manage.py import_transactions ~/mydata/2013-01-commerzbank.csv
 
-You can then browse your transactions in the /admin/, add transaction category hints, and reimport your csvs to automatically update the categories based on your hints.
+You can then browse your transactions in the /admin/, add transaction category hints, and reimport your csvs to automatically update the categories based on your hint policies.
