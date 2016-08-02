@@ -27,7 +27,8 @@ class TransactionAdmin(admin.ModelAdmin):
     # XXX Including category puts a massive load on the list view,
     # even if you're only displaying category.id - it seems to be doing
     # a lot more work that just retrieving the FK.
-    list_display = ('date', 'account', 'amount', 'category', 'tid', 'memo')
+    list_display = (
+    'date', 'account', 'amount', 'category', 'tid', 'payee', 'memo')
     ordering = ('-date',)
     list_filter = ('account', UncategorisedListFilter)
 

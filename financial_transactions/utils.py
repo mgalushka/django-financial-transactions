@@ -1,4 +1,5 @@
 import sys
+import re
 
 from financial_transactions.models import (
     Account,
@@ -7,10 +8,11 @@ from financial_transactions.models import (
 )
 
 
-def category_for_memo(memo, hints):
+def category_for_memo(match_string, hints):
     """Return a default category based on the memo."""
     for hint in hints:
-        if hint.memo_like in memo:
+        pattern = re.compile('.*' + hint.memo_like + '.*')
+        if pattern.match(match_string):
             return hint.category
     return None
 
@@ -32,7 +34,11 @@ def process_transactions_for_account(transactions, account, hints):
     for transaction in transactions:
         stats["count"] += 1
 
-        category = category_for_memo(transaction.memo, hints)
+        matched_data = "{} {}".format(
+            transaction.memo,
+            transaction.payee,
+        ).lower()
+        category = category_for_memo(matched_data, hints)
 
         existing = Transaction.objects.filter(
             tid=transaction.id,
@@ -52,7 +58,8 @@ def process_transactions_for_account(transactions, account, hints):
                 amount=transaction.amount,
                 date=transaction.date,
                 memo=transaction.memo,
-                category=category
+                category=category,
+                payee=transaction.payee,
             )
             stats["imported_count"] += 1
             if category is not None:

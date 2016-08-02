@@ -24,6 +24,7 @@ class Transaction(models.Model):
 
     category = models.ForeignKey('categories.Category', null=True, blank=True)
     account = models.ForeignKey('Account')
+    payee = models.TextField(_('Payee'))
 
     class Meta:
         app_label = 'financial_transactions'
